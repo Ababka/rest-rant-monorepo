@@ -24,10 +24,12 @@ function LoginForm() {
             },
             body: JSON.stringify(credentials)
         })
+
         const data = await response.json()
-        if (response.status === 200){
+
+        if (response.status === 200) {
             setCurrentUser(data.user)
-            console.log(data.token)
+            localStorage.setItem('token', data.token)
             history.push(`/`)
         } else {
             setErrorMessage(data.message)
